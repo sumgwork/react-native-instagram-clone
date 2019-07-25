@@ -1,12 +1,22 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Constants } from "expo";
-import AuthorRow from "./components/AuthorRow";
+import Constants from "expo-constants";
+import CardList from "./components/CardList";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
+const items = [
+  {
+    id: 0,
+    author: "John Doe"
+  },
+  { id: 1, author: "Jane Doe" },
+  { id: 2, author: "Jane Doe" },
+  { id: 3, author: "Jane Doe" }
+];
 export default function App() {
   return (
     <View style={styles.container}>
-      <AuthorRow />
+      <CardList items={items} />
     </View>
   );
 }
