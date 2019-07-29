@@ -6,9 +6,10 @@ import {
   Text
 } from "react-native";
 import { fetchImages } from "../utils/api";
+import PropTypes from "prop-types";
 import CardList from "../components/CardList";
 
-const Feed = ({ style }) => {
+const Feed = ({ style, commentsForItem, onPressComments }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [items, setItems] = useState([]);
@@ -37,13 +38,20 @@ const Feed = ({ style }) => {
 
   return (
     <SafeAreaView style={style}>
-      <CardList items={items} />
+      <CardList
+        items={items}
+        commentsForItem={commentsForItem}
+        onPressComments={onPressComments}
+      />
     </SafeAreaView>
   );
 };
 
 Feed.propTypes = {
-  style: ViewPropTypes.style
+  style: ViewPropTypes.style,
+  onPressComments: PropTypes.func.isRequired,
+  commentsForItem: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.string))
+    .isRequired
 };
 
 Feed.defaultProps = {
